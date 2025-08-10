@@ -1,1 +1,13 @@
-spring.application.name=userservice
+spring:
+  application:
+    name: userservice
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:postgresql://localhost:9001/user
+    username: postgres
+    password: postgres
+  dia
