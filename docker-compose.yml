@@ -1,0 +1,24 @@
+services:
+  userdb:
+    container_name: userdb
+    image: postgres:14-alpine
+    restart: always
+    ports:
+      - "9001:5432"
+    volumes:
+      - "./docker-volumes/userdb:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: user
+  activitydb:
+    container_name: activitydb
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./docker-volumes/activitydb:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
