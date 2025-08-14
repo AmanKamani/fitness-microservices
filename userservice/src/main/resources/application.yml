@@ -10,4 +10,12 @@ spring:
     url: jdbc:postgresql://localhost:9001/user
     username: postgres
     password: postgres
-  dia
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7777/eureka/
+
