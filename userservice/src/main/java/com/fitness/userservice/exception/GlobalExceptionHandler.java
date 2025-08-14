@@ -39,11 +39,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ApiErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
         log.error("Invalid argument type", ex);
-        ApiErrorResponse response = new ApiErrorResponse(ApplicationError.INVALID_REQUEST_BODY);
+        ApiErrorResponse response = new ApiErrorResponse(ApplicationError.BAD_REQUEST);
         response.setMessage(ex.getMessage());
 
         return ResponseEntity
-                .status(ApplicationError.INVALID_REQUEST_BODY.httpStatus())
+                .status(ApplicationError.BAD_REQUEST.httpStatus())
                 .body(response);
     }
 
