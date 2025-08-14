@@ -8,6 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,6 +34,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(ApplicationError.INVALID_REQUEST_BODY.httpStatus())
                 .body(new ApiErrorResponse(ApplicationError.INVALID_REQUEST_BODY, errors));
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ApiErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
+        log.error("Invalid argument type", ex);
+        ApiErrorResponse response = new ApiErrorResponse(ApplicationError.INVALID_REQUEST_BODY);
+        response.setMessage(ex.getMessage());
+
+        return ResponseEntity
+                .status(ApplicationError.INVALID_REQUEST_BODY.httpStatus())
+                .body(response);
     }
 
     @ExceptionHandler(Exception.class)

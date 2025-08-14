@@ -26,4 +26,10 @@ public class UserController {
     public UserResponse getUserById(@PathVariable UUID id) {
         return userService.findById(id);
     }
+
+    @GetMapping("/{id}/validate")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void validateUserById(@PathVariable UUID id) {
+        userService.existsById(id);
+    }
 }

@@ -9,4 +9,6 @@ public interface UserService {
     UserResponse register(UserRequest request);
 
     UserResponse findById(UUID id);
+
+    void existsById(UUID id);
 }

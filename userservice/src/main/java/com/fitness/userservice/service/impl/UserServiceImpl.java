@@ -41,4 +41,11 @@ public class UserServiceImpl implements UserService {
                             return BaseException.build(ApplicationError.USER_NOT_FOUND);
                         });
     }
+
+    @Override
+    public void existsById(UUID id) {
+        if (!userRepository.existsById(id)) {
+            throw BaseException.build(ApplicationError.USER_NOT_FOUND);
+        }
+    }
 }
