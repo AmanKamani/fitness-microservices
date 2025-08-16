@@ -21,3 +21,13 @@ services:
       - "./docker-volumes/activitydb:/data/db"
     environment:
       MONGO_INITDB_DATABASE: fitnessactivity
+  recommendationdb:
+    container_name: recommendationdb
+    image: mongo
+    restart: always
+    ports:
+      - "27018:27017"
+    volumes:
+      - "./docker-volumes/recommendationdb:/data/db"
+    environment:
+      MONGO_INITDB_DATABASE: fitnessrecommendation

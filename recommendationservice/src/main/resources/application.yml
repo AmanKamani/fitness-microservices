@@ -1,6 +1,12 @@
 spring:
   application:
     name: recommendationservice
+
+  data:
+    mongodb:
+      url: mongodb://localhost:27018/fitnessrecommendation
+      database: fitnessrecommendation
+
 server:
   port: 8082
 
