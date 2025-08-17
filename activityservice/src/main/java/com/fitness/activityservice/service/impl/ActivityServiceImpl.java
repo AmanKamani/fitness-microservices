@@ -2,6 +2,7 @@ package com.fitness.activityservice.service.impl;
 
 import com.fitness.activityservice.dto.ActivityRequest;
 import com.fitness.activityservice.dto.ActivityResponse;
+import com.fitness.activityservice.kafka.producer.ActivityProducer;
 import com.fitness.activityservice.mapper.ActivityMapper;
 import com.fitness.activityservice.model.Activity;
 import com.fitness.activityservice.repository.ActivityRepository;
@@ -22,12 +23,14 @@ public class ActivityServiceImpl implements ActivityService {
 
     private final ActivityRepository activityRepository;
     private final WebClient userClient;
+    private final ActivityProducer activityProducer;
 
 
     @Override
     public ActivityResponse trackActivity(ActivityRequest request) {
         validateUserId(request.getUserId());
         Activity savedActivity = activityRepository.save(ActivityMapper.from(request));
+        activityProducer.send(savedActivity);
         return ActivityMapper.from(savedActivity);
     }
 
