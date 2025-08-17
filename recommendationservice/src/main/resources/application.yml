@@ -26,3 +26,16 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:7777/eureka/
+
+gemini:
+  api:
+    # Generate both of these from Gemini Model dashboard/studio
+    url: ${GEMINI_API_URL}
+    key: ${GEMINI_API_KEY}
+
+#logging:
+#  level:
+#    reactor:
+#      netty:
+#        transport: DEBUG
+#        resources: DEBUG
