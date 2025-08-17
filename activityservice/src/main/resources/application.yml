@@ -13,6 +13,9 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        #      properties:
+      ## Avoid Sending TypeId header in message
+    #        spring.json.add.type.headers: false
     topics:
       activity:
         name: activity
