@@ -1,0 +1,38 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27018/fitnessrecommendation
+      database: fitnessrecommendation
+
+  kafka:
+    bootstrap-servers:
+      - localhost:9094
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      group-id: activity-ai-consumer
+    topics:
+      activity:
+        name: activity
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7777/eureka/
+
+gemini:
+  api:
+    # Generate both of these from Gemini Model dashboard/studio
+    url: ${GEMINI_API_URL}
+    key: ${GEMINI_API_KEY}
+
+#logging:
+#  level:
+#    reactor:
+#      netty:
+#        transport: DEBUG
+#        resources: DEBUG
