@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://userservice
+              predicates:
+                - Path=/api/users/**
+
+            - id: activity-service
+              uri: lb://activityservice
+              predicates:
+                - Path=/api/activities/**
+
+            - id: recommendation-service
+              uri: lb://recommendationservice
+              predicates:
+                - Path=/api/recommendations/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7777/eureka/
+
+server:
+  port: 8000

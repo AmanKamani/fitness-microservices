@@ -52,7 +52,7 @@ public class ActivityServiceImpl implements ActivityService {
     public void validateUserId(String userId) {
         try {
             userClient.get()
-                    .uri("/api/v1/users/{userId}/validate", userId)
+                    .uri("/api/users/v1/{userId}/validate", userId)
                     .retrieve()
                     .toBodilessEntity()
                     .block();
