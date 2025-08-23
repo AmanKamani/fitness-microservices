@@ -14,12 +14,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/recommendations")
+@RequestMapping("/api/recommendations")
 public class RecommendationController {
 
     private final RecommendationService service;
 
-    @GetMapping("/users/{userId}")
+    @GetMapping("/v1/users/{userId}")
     public Mono<ResponseEntity<List<RecommendationResponse>>> getByUserId(@PathVariable String userId) {
         return service.getByUserId(userId)
                 .collectList()
@@ -27,7 +27,7 @@ public class RecommendationController {
     }
 
 
-    @GetMapping("/activities/{activityId}")
+    @GetMapping("/v1/activities/{activityId}")
     public Mono<ResponseEntity<RecommendationResponse>> getByActivityId(@PathVariable String activityId) {
         return service.getByActivityId(activityId)
                 .map(ResponseEntity::ok);

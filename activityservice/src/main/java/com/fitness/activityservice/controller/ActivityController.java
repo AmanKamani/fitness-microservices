@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/activities")
+@RequestMapping("api/activities")
 @RequiredArgsConstructor
 public class ActivityController {
     private static final String X_USER_ID = "X-User-ID";
     private final ActivityService service;
 
-    @PostMapping
+    @PostMapping("/v1/register")
     @ResponseStatus(HttpStatus.CREATED)
     public ActivityResponse trackActivity(@RequestBody ActivityRequest request) {
         return service.trackActivity(request);
     }
 
 
-    @GetMapping
+    @GetMapping("/v1/user")
     public List<ActivityResponse> getActivities(@RequestHeader(X_USER_ID) String userId) {
         return service.getUserActivities(userId);
     }
 
-    @GetMapping("/{activityId}")
+    @GetMapping("/v1/{activityId}")
     public ActivityResponse getActivity(@PathVariable("activityId") String activityId) {
         return service.findById(activityId);
     }

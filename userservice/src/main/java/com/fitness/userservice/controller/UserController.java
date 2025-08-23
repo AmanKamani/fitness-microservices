@@ -12,22 +12,22 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/users")
+@RequestMapping("api/users")
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/register")
+    @PostMapping("/v1/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse registerUser(@Valid @RequestBody UserRequest user) {
         return userService.register(user);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/v1/{id}")
     public UserResponse getUserById(@PathVariable UUID id) {
         return userService.findById(id);
     }
 
-    @GetMapping("/{id}/validate")
+    @GetMapping("/v1/{id}/validate")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void validateUserById(@PathVariable UUID id) {
         userService.existsById(id);
