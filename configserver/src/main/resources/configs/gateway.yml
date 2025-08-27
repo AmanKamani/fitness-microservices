@@ -1,4 +1,11 @@
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # this url is from keycloak
+          jwk-set-uri: http://localhost:2222/realms/fitness-oauth2/protocol/openid-connect/certs
+
   cloud:
     gateway:
       server:
